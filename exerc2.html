@@ -1,0 +1,115 @@
+<!--
+Build an HTML page which displays a table with data as follows.
+
++------------+-----------+-------------------+-----------------+--------+
+| First Name | Last Name | Email             | Phone           | Office |
++------------+-----------+-------------------+-----------------+--------+
+| John       | Smith     | jsmith@sar.com    | +30 210 1234567 | PN 514 |
++------------+-----------+-------------------+-----------------+--------+
+| Maria      | Carras    | mcarras@jsu.edu   | +30 210 7654321 | PM 413 |
++------------+-----------+-------------------+-----------------+--------+
+| Helen      | Antypas   | hantypas@bdg.com  | +30 2310 654321 | PK 614 |
++------------+-----------+-------------------+-----------------+--------+
+| Afroditi   | Makri     | amakri@hughes.edu | +30 2310 123456 | PJ 717 |
++------------+-----------+-------------------+-----------------+--------+
+
+The page should contain two buttons.
+• Button Next: Upon clicking thet button, the next data row (not the header row) is highlighted by
+changing its font color to red and the previous row returns to black color. Initially no row is
+highlighted.
+• Button Clear: Upon clicking the button all rows return to black color
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Exercise 2</title>
+        <style>
+            .highlight {
+                color: red;
+            }
+        </style>
+      
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script> 
+        $(document).ready(function(){
+            let x = -1;
+            const rows = $('table tbody tr');
+
+
+
+            $('#next').click(function(){
+                if (x >= 0) {
+                    $(rows[x]).removeClass('highlight');
+                }
+
+                x = (x + 1) % rows.length;
+                $(rows[x]).addClass('highlight');
+
+
+            });
+
+
+            $('#clear').click(function(){
+                rows.removeClass('highlight');
+                
+                
+            });
+
+
+
+
+        });
+         
+
+        </script>
+    </head>
+    <body>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Office</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>John</td>
+                <td>Smith</td>
+                <td>jsmith@sar.com</td>
+                <td>+30 210 1234567</td>
+                <td>PN 514</td>
+            </tr>
+            <tr>
+                <td>Maria</td>
+                <td>Carras</td>
+                <td>mcarras@jsu.edu</td>
+                <td>+30 210 7654321</td>
+                <td>PM 413</td>
+            </tr>
+            <tr>
+                <td>Helen</td>
+                <td>Antypas</td>
+                <td>hantypas@bdg.com</td>
+                <td>+30 2310 654321</td>
+                <td>PK 614</td>
+            </tr>
+            <tr>
+                <td>Afroditi</td>
+                <td>Makri</td>
+                <td>amakri@hughes.edu</td>
+                <td>+30 2310 123456</td>
+                <td>PJ 717</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button id="next">Next</button>
+    <button id="clear">Clear</button>
+    </body>
+</html>
